@@ -65,7 +65,7 @@ public class EventLogger implements ActivitiEventListener {
 	}
 
 	protected void initializeDefaultHandlers() {
-	  addEventHandler(ActivitiEventType.TASK_CREATED, TaskCreatedEventHandler.class);
+		addEventHandler(ActivitiEventType.TASK_CREATED, TaskCreatedEventHandler.class);
 		addEventHandler(ActivitiEventType.TASK_COMPLETED, TaskCompletedEventHandler.class);
 		addEventHandler(ActivitiEventType.TASK_ASSIGNED, TaskAssignedEventHandler.class);
 		
@@ -75,6 +75,8 @@ public class EventLogger implements ActivitiEventListener {
 		addEventHandler(ActivitiEventType.ACTIVITY_STARTED, ActivityStartedEventHandler.class);
 		addEventHandler(ActivitiEventType.ACTIVITY_SIGNALED, ActivitySignaledEventHandler.class);
 		addEventHandler(ActivitiEventType.ACTIVITY_MESSAGE_RECEIVED, ActivityMessageEventHandler.class);
+		addEventHandler(ActivitiEventType.ACTIVITY_MESSAGE_WAITING, ActivityMessageEventHandler.class);
+		
 		addEventHandler(ActivitiEventType.ACTIVITY_COMPENSATE, ActivityCompensatedEventHandler.class);
 		addEventHandler(ActivitiEventType.ACTIVITY_ERROR_RECEIVED, ActivityErrorReceivedEventHandler.class);
 		
