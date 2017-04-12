@@ -31,6 +31,5 @@
     <sequenceFlow id="flow6" sourceRef="usertask3" targetRef="theEnd"/>
 
     <endEvent id="theEnd"/>
-
   </process>
 </definitions>

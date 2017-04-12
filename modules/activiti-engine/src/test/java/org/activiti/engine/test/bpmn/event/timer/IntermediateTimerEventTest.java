@@ -33,7 +33,10 @@ public class IntermediateTimerEventTest extends PluggableActivitiTestCase {
 	
   private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
-  @Deployment
+	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+
+
+@Deployment
   public void testCatchingTimerEvent() throws Exception {
 
     // Set the clock fixed

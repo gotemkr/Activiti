@@ -123,6 +123,25 @@ public class ManagementServiceImpl extends ServiceImpl implements ManagementServ
     return commandExecutor.execute(new RescheduleTimerJobCmd(jobId, timeDate, timeDuration, timeCycle, endDate, calendarName));
   }
 
+  @Override
+  public Job rescheduleTimeDateTimerJob(String jobId, String timeDate) {
+    return commandExecutor.execute(new RescheduleTimerJobCmd(jobId, timeDate, null, null, null, null));
+  }
+  
+  @Override
+  public Job rescheduleTimeDurationTimerJob(String jobId, String timeDuration) {
+    return commandExecutor.execute(new RescheduleTimerJobCmd(jobId, null, timeDuration, null, null, null));
+  }
+  
+  @Override
+  public Job rescheduleTimeCycleTimerJob(String jobId, String timeCycle) {
+    return commandExecutor.execute(new RescheduleTimerJobCmd(jobId, null, null, timeCycle, null, null));
+  }
+  
+  @Override
+  public Job rescheduleTimerJob(String jobId, String timeDate, String timeDuration, String timeCycle, String endDate, String calendarName) {
+    return commandExecutor.execute(new RescheduleTimerJobCmd(jobId, timeDate, timeDuration, timeCycle, endDate, calendarName));
+  }
   public void deleteJob(String jobId) {
     commandExecutor.execute(new DeleteJobCmd(jobId));
   }

@@ -1,3 +1,4 @@
+
 /* Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -10,6 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.activiti.engine.impl.cmd;
 
 import java.io.Serializable;
@@ -24,7 +26,7 @@ import org.activiti.engine.impl.persistence.entity.TimerJobEntity;
 
 public class RescheduleTimerJobCmd implements Serializable, Command<TimerJobEntity> {
 	
-  private static final long serialVersionUID = 1L;
+ private static final long serialVersionUID = 1L;
 	
   private final String timerJobId;
 	

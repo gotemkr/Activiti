@@ -53,6 +53,8 @@ public class BoundaryTimerEventTest extends PluggableActivitiTestCase {
   
   private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
+  private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+
   /*
    * Test for when multiple boundary timer events are defined on the same user task
    * 
@@ -400,7 +402,7 @@ public class BoundaryTimerEventTest extends PluggableActivitiTestCase {
     calendar.add(Calendar.MINUTE, 5);
     processEngineConfiguration.getClock().setCurrentTime(calendar.getTime());
     JobTestHelper.executeJobExecutorForTime(processEngineConfiguration, 1000, 100);
-    
+
     // Confirm timer has not run
     tasks = taskService.createTaskQuery().processInstanceId(processInstance.getId()).list();
     assertEquals(1, tasks.size());

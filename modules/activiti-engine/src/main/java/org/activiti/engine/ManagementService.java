@@ -127,7 +127,7 @@ public interface ManagementService {
   Job moveDeadLetterJobToExecutableJob(String jobId, int retries);
   
   /**
-    * Reschedule a timer job with a time & date with new time & date.
+   * Reschedule a timer job with a time & date with new time & date.
    * @param jobId
    *          id of the timer job to be rescheduled. Must not be null.
    * @param timeDate
