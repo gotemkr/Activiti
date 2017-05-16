@@ -25,6 +25,16 @@ KISBPM.TOOLBAR = {
                 scope: services.$scope
             }, services.$modal, services.$scope);
         },
+        
+        validate: function(services) {
+        	
+        	_internalCreateModal({
+                backdrop: true,
+                keyboard: true,
+                template: 'editor-app/popups/validate-model.html?version=' + Date.now(),
+                scope: services.$scope
+            }, services.$modal, services.$scope);
+		},
 
         undo: function (services) {
 
@@ -463,4 +473,65 @@ angular.module('activitiModeler').controller('SaveModelCtrl', [ '$rootScope', '$
         }
     };
 
+}]);
+
+angular.module('activitiModeler').controller('ValidateModelCtrl',['$scope', '$http', 
+    function ($scope, $http) {
+
+          var editor = $scope.editor;
+	      var model = $scope.editor.getJSON();
+
+	    $scope.status = {
+		   	loading: true
+	    };
+
+	    $scope.model = {
+			errors: []
+	    };
+
+	    $scope.errorGrid = {
+			data: $scope.model.errors,
+			headerRowHeight: 28,
+			enableRowSelection: true,
+			multiSelect: false,
+			modifierKeysToMultiSelect: false,
+			enableHorizontalScrollbar: 0,
+			enableColumnMenus: false,
+			enableSorting: false,
+			columnDefs: [
+			             {field: 'activityName', displayName: 'Name', width:125},
+			             {field: 'defaultDescription', displayName: 'Description', width:613},
+			             {field: 'warning', displayName: 'Critical', cellTemplate:'editor-app/configuration/properties/errorgrid-critical.html', width: 100}
+			             ]
+	    };
+
+	    $scope.errorGrid.onRegisterApi = function(gridApi) {
+		//set gridApi on scope
+		$scope.gridApi = gridApi;
+		gridApi.selection.on.rowSelectionChanged($scope, function(row) {
+			if (row.isSelected) {
+				 KISBPM.TOOLBAR.ACTIONS.navigateToProcess(row.entity.activityId);
+				$scope.$hide();
+			}
+		});
+	};
+
+	$http({
+		url: KISBPM.URL.validateModel(),
+		method: 'POST',
+		cache: false,
+		headers: {
+			"Content-Type":"application/json;charset=utf-8"
+		},
+		data: model
+
+	}).then(function(response){
+		$scope.status.loading = false;
+		response.data.forEach(function (row) {
+			$scope.model.errors.push(row);
+		});
+
+	},function(response){
+		console.log(response);
+	});
 }]);

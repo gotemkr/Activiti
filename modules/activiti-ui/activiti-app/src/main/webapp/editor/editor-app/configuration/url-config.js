@@ -24,5 +24,9 @@ KISBPM.URL = {
 
     putModel: function(modelId) {
         return ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + modelId + '/editor/json';
+    },
+    
+    validateModel: function(){
+		return ACTIVITI.CONFIG.contextRoot + '/app/rest/model/validate';
     }
 };

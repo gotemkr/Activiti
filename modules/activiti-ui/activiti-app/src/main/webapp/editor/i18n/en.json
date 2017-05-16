@@ -1777,6 +1777,7 @@
     "PROPERTY.DUEDATE.TASK-DUE-DATE-OPTIONS.FIELD" : "Based on field",
 
     "MODEL.SAVE.TITLE" : "Save model",
+    "MODEL.VALIDATE.TITLE" : "Validation results",
     "MODEL.NAME" : "Name",
     "MODEL.KEY" : "Key",
     "MODEL.DESCRIPTION" : "Description",

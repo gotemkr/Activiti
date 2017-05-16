@@ -750,3 +750,70 @@ li.x-menu-list-item.x-menu-item-active a {
     cursor: pointer;
     z-index: 1;
 }
+
+.decision-table .row {
+	margin-left: -10px;
+	margin-right: -10px;
+}
+
+.ui-grid-render-container-body .ui-grid-header-viewport {
+	float: none;
+	width: 857.778px !important ;
+} 
+
+.ui-grid-render-container-body .ui-grid-viewport {
+    width: 857.778px !important ;
+	height : 300px !important ; 
+}
+
+.ui-grid-coluiGrid-005 {
+    width: 100px;
+    float: right;
+    border-right: none;
+}
+.ui-grid-pinned-container-left {
+	float : right;
+	display : none;
+}  
+
+.ui-grid .ui-grid-render-container-body .ui-grid-viewport {
+	overflow-x: auto !important;
+} 
+
+.validationGrid {
+	border: 1px solid rgb(212, 212, 212);
+	height: 300px;
+}
+
+.ng-hide-add-active, .ng-hide-remove {
+	display: inherit !important;
+}
+
+.ng-hide:not(.ng-animate) {
+	display: none !important;
+}
+
+.activiti-status {
+	border: 1px solid #3c3c3c;
+	margin: 2px;
+	height: 28px;
+	line-height: 20px;
+}
+
+.activiti-warning {
+	text-align: center;
+	background: yellow;
+	height: 100%;
+}
+
+.activiti-critical {
+	text-align: center;
+	background: #990000;
+	color: white;
+	height: 100%;
+}
+
+.actions {
+	padding-top: 1px;
+	padding-left: 2px;
+} 
