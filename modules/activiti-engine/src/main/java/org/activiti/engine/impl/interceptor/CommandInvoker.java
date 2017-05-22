@@ -12,6 +12,7 @@
  */
 package org.activiti.engine.impl.interceptor;
 
+import org.activiti.engine.ActivitiLoggableException;
 import org.activiti.engine.impl.agenda.AbstractOperation;
 import org.activiti.engine.impl.context.Context;
 import org.slf4j.Logger;
@@ -52,10 +53,15 @@ public class CommandInvoker extends AbstractCommandInterceptor {
   }
 
   protected void executeOperations(final CommandContext commandContext) {
-    while (!commandContext.getAgenda().isEmpty()) {
-      Runnable runnable = commandContext.getAgenda().getNextOperation();
-      executeOperation(runnable);
-    }
+	try{
+	while (!commandContext.getAgenda().isEmpty()) {
+		Runnable runnable = commandContext.getAgenda().getNextOperation();
+		executeOperation(runnable);
+	}
+	}
+	catch(ActivitiLoggableException e){
+		//Do nothing here
+	}
   }
 
   public void executeOperation(Runnable runnable) {

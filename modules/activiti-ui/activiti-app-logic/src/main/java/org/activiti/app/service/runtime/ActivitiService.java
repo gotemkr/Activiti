@@ -47,4 +47,7 @@ public class ActivitiService {
         
 	}
 
+	public  void resumeProcessInstance(String executionId){
+		runtimeService.resumeProcessInstance(executionId);
+	}
 }

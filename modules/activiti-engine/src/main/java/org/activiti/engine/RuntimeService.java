@@ -1224,4 +1224,6 @@ public interface RuntimeService {
   /** The all events related to the given Process Instance. */
   List<Event> getProcessInstanceEvents(String processInstanceId);
 
+void resumeProcessInstance(String executionId);
+
 }

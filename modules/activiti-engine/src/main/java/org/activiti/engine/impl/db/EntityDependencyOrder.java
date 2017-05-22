@@ -13,6 +13,7 @@ import org.activiti.engine.impl.persistence.entity.DeploymentEntityImpl;
 import org.activiti.engine.impl.persistence.entity.Entity;
 import org.activiti.engine.impl.persistence.entity.EventLogEntryEntityImpl;
 import org.activiti.engine.impl.persistence.entity.EventSubscriptionEntityImpl;
+import org.activiti.engine.impl.persistence.entity.ExceptionEntityImpl;
 import org.activiti.engine.impl.persistence.entity.ExecutionEntityImpl;
 import org.activiti.engine.impl.persistence.entity.GroupEntityImpl;
 import org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntityImpl;
@@ -160,6 +161,12 @@ public class EntityDependencyOrder {
 		 */
 		DELETE_ORDER.add(TaskEntityImpl.class);
 		
+		
+		/*
+		 * FK to ExecutionEntityImpl
+		 */
+		DELETE_ORDER.add(ExceptionEntityImpl.class);
+		
 		/*
 		 * FK from VariableInstance 
 		 * FK from EventSubscription
@@ -169,6 +176,8 @@ public class EntityDependencyOrder {
 		 * FK to ProcessDefinition
 		 */
 		DELETE_ORDER.add(ExecutionEntityImpl.class);
+		
+		
 		
 		/*
 		 * FK from Task

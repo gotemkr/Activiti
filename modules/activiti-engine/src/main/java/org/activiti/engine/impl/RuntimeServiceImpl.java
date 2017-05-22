@@ -50,6 +50,7 @@ import org.activiti.engine.impl.cmd.HasExecutionVariableCmd;
 import org.activiti.engine.impl.cmd.MessageEventReceivedCmd;
 import org.activiti.engine.impl.cmd.RemoveEventListenerCommand;
 import org.activiti.engine.impl.cmd.RemoveExecutionVariablesCmd;
+import org.activiti.engine.impl.cmd.ResumeProcessExecutionCmd;
 import org.activiti.engine.impl.cmd.SetExecutionVariablesCmd;
 import org.activiti.engine.impl.cmd.SetProcessInstanceBusinessKeyCmd;
 import org.activiti.engine.impl.cmd.SetProcessInstanceNameCmd;
@@ -538,4 +539,12 @@ public class RuntimeServiceImpl extends ServiceImpl implements RuntimeService {
     }
     
   }
+
+	@Override
+	public void resumeProcessInstance(String executionId) {
+		commandExecutor.execute(new ResumeProcessExecutionCmd(executionId));
+	}
+  
+  
+  
 }

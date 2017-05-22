@@ -14,6 +14,7 @@ package org.activiti.app.rest.runtime;
 
 import org.activiti.app.model.runtime.CreateProcessInstanceRepresentation;
 import org.activiti.app.model.runtime.ProcessInstanceRepresentation;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,5 +26,11 @@ public class ProcessInstancesResource extends AbstractProcessInstancesResource {
 	@RequestMapping(value = "/rest/process-instances", method = RequestMethod.POST)
     public ProcessInstanceRepresentation startNewProcessInstance(@RequestBody CreateProcessInstanceRepresentation startRequest) {
 		return super.startNewProcessInstance(startRequest);
+	}
+	
+	@RequestMapping(value = "/rest/process-instance/{executionId}/resume", method = RequestMethod.POST)
+	//change input for instance id
+    public ProcessInstanceRepresentation resumeProcessInstance(@PathVariable("executionId") String executionId) {
+		return super.resumeProcessInstance(executionId);
 	}
 }

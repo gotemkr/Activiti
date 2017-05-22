@@ -2,12 +2,14 @@ package org.activiti.engine.impl.agenda;
 
 import org.activiti.bpmn.model.*;
 import org.activiti.engine.ActivitiException;
+import org.activiti.engine.ActivitiLoggableException;
 import org.activiti.engine.delegate.ExecutionListener;
 import org.activiti.engine.delegate.event.ActivitiEventType;
 import org.activiti.engine.delegate.event.impl.ActivitiEventBuilder;
 import org.activiti.engine.impl.context.Context;
 import org.activiti.engine.impl.delegate.ActivityBehavior;
 import org.activiti.engine.impl.interceptor.CommandContext;
+import org.activiti.engine.impl.persistence.entity.ExceptionEntity;
 import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
 import org.activiti.engine.impl.persistence.entity.JobEntity;
 import org.activiti.engine.impl.util.CollectionUtil;
@@ -51,12 +53,27 @@ public class ContinueProcessOperation extends AbstractOperation {
   @Override
   public void run() {
     FlowElement currentFlowElement = getCurrentFlowElement(execution);
-    if (currentFlowElement instanceof FlowNode) {
-      continueThroughFlowNode((FlowNode) currentFlowElement);
-    } else if (currentFlowElement instanceof SequenceFlow) {
-      continueThroughSequenceFlow((SequenceFlow) currentFlowElement);
-    } else {
-      throw new ActivitiException("Programmatic error: no current flow element found or invalid type: " + currentFlowElement + ". Halting.");
+    
+    try{
+		if (currentFlowElement instanceof FlowNode) {
+		  continueThroughFlowNode((FlowNode) currentFlowElement);
+		} else if (currentFlowElement instanceof SequenceFlow) {
+		  continueThroughSequenceFlow((SequenceFlow) currentFlowElement);
+		} else {
+		  throw new ActivitiException("Programmatic error: no current flow element found or invalid type: " + currentFlowElement + ". Halting.");
+		}
+    }
+    catch(Exception e){
+    	
+    	ExceptionEntity exceptionEnt = Context.getProcessEngineConfiguration().getExceptionEntityManager().create();
+    	exceptionEnt.setExceptionActId(currentFlowElement.getId());
+    	exceptionEnt.setExceptionMessage(e.getMessage());
+    	exceptionEnt.setProcInstId(execution.getProcessInstanceId());
+    	exceptionEnt.setExecutionId(execution.getId());
+    	exceptionEnt.setExceptionDetails(e);
+    	Context.getProcessEngineConfiguration().getExceptionDataManager().insert(exceptionEnt);
+    	
+    	throw new ActivitiLoggableException(e.getMessage(), exceptionEnt, e);
     }
   }
 

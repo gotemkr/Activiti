@@ -138,6 +138,11 @@ public abstract class AbstractProcessInstancesResource {
     return new ProcessInstanceRepresentation(historicProcess, processDefinition, ((ProcessDefinitionEntity) processDefinition).isGraphicalNotationDefined(), user);
 
   }
+  
+  public ProcessInstanceRepresentation resumeProcessInstance(String executionId) {
+	  activitiService.resumeProcessInstance(executionId);
+	  return null;
+  }
 
   protected Map<String, List<RelatedContent>> groupContentByField(Page<RelatedContent> allContent) {
     HashMap<String, List<RelatedContent>> result = new HashMap<String, List<RelatedContent>>();
