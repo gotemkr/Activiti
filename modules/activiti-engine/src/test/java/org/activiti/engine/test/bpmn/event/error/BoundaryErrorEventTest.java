@@ -291,7 +291,7 @@ public class BoundaryErrorEventTest extends PluggableActivitiTestCase {
   public void testCatchErrorEventsOnMultipleCallActivity() {
     String procId = runtimeService.startProcessInstanceByKey("catchError3").getId();
     Task task = taskService.createTaskQuery().singleResult();
-    assertEquals("myErrorTaskNested", task.getName());
+    assertEquals("MyErrorTask", task.getName());
 
     // Completing the task will end the process instance
     taskService.complete(task.getId());

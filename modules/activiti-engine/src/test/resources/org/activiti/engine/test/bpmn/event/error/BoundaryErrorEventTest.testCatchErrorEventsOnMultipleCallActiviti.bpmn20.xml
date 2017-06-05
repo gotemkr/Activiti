@@ -13,10 +13,10 @@
     <endEvent id="endCatchError"></endEvent>
     <sequenceFlow id="flow4" sourceRef="subprocessCatchError" targetRef="endCatchError"></sequenceFlow>
     <boundaryEvent id="catchOtherErrors" name="otherErrors" attachedToRef="subprocessCatchError">
-      <errorEventDefinition></errorEventDefinition>
+      <errorEventDefinition errorRef="myOtherNested"></errorEventDefinition>
     </boundaryEvent>
-    <boundaryEvent id="boundaryCatchMyError" name="myError" attachedToRef="subprocessCatchError">
-      <errorEventDefinition errorRef="myError"></errorEventDefinition>
+    <boundaryEvent id="boundaryCatchMyError" name="myErrorNested" attachedToRef="subprocessCatchError">
+      <errorEventDefinition errorRef="myErrorNested"></errorEventDefinition>
     </boundaryEvent>
     <userTask id="otherErrorsTaskNested" name="otherErrorsTaskNested"></userTask>
     <userTask id="myErrorTaskNested" name="myErrorTaskNested"></userTask>
