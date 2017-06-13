@@ -2,6 +2,8 @@ drop index ACT_IDX_BYTEAR_DEPL;
 drop index ACT_IDX_EXE_PROCINST;
 drop index ACT_IDX_EXE_PARENT;
 drop index ACT_IDX_EXE_SUPER;
+drop index ACT_IDX_EXCEPTION_EXEC;
+drop index ACT_IDX_EXCEPTION_PROCINST;
 drop index ACT_IDX_TSKASS_TASK;
 drop index ACT_IDX_TASK_EXEC;
 drop index ACT_IDX_TASK_PROCINST;
@@ -50,6 +52,12 @@ alter table ACT_RU_EXECUTION
 	
 alter table ACT_RU_EXECUTION 
     drop CONSTRAINT ACT_FK_EXE_PROCDEF;
+    
+alter table ACT_RU_EXCEPTION 
+    drop CONSTRAINT ACT_FK_EXCEPTION_EXEC;
+	
+alter table ACT_RU_EXCEPTION 
+    drop CONSTRAINT ACT_FK_EXCEPTION_PROCINST;
     
 alter table ACT_RU_IDENTITYLINK
     drop CONSTRAINT ACT_FK_TSKASS_TASK;
@@ -161,6 +169,7 @@ drop table ACT_RU_IDENTITYLINK;
 drop table ACT_RU_VARIABLE;
 drop table ACT_RU_TASK;
 drop table ACT_RU_EXECUTION;
+drop table ACT_RU_EXCEPTION;
 drop table ACT_RU_JOB;
 drop table ACT_RU_TIMER_JOB;
 drop table ACT_RU_SUSPENDED_JOB;

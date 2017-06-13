@@ -64,4 +64,9 @@ public class MybatisExceptionDataManager extends AbstractDataManager<ExceptionEn
 		getDbSqlSession().delete("deleteExceptions", list, ExceptionEntityImpl.class);
 	}
 
+	@Override
+	public List<ExceptionEntity> getAllExceptions() {
+		return getList("selectAllException", null, null, false);
+	}
+
 }

@@ -23,6 +23,7 @@ import org.activiti.engine.delegate.event.ActivitiEvent;
 import org.activiti.engine.delegate.event.ActivitiEventDispatcher;
 import org.activiti.engine.delegate.event.ActivitiEventListener;
 import org.activiti.engine.delegate.event.ActivitiEventType;
+import org.activiti.engine.impl.persistence.entity.ExceptionEntity;
 import org.activiti.engine.impl.persistence.entity.VariableInstance;
 import org.activiti.engine.runtime.DataObject;
 import org.activiti.engine.runtime.Execution;
@@ -1224,6 +1225,25 @@ public interface RuntimeService {
   /** The all events related to the given Process Instance. */
   List<Event> getProcessInstanceEvents(String processInstanceId);
 
-void resumeProcessInstance(String executionId);
+  
+  /**
+   * Resumes the process from exception activiti.
+   * @param executionId
+   * 		id of the current execution
+   */
+  void resumeProcessInstance(String executionId);
+  
+  /**
+   * Returns the list of all exceptions. 
+   * @return
+   */
+  List<ExceptionEntity> getAllExceptionEntities();
+  
+  /**
+   * Returns the exception for process instance. 
+   * @param processInstanceId id of the process instance
+   * @return Exception of process instance
+   */
+  ExceptionEntity getExceptionOfProcessInstance(String processInstanceId);
 
 }

@@ -10,6 +10,8 @@ public interface ExceptionDataManager extends DataManager<ExceptionEntity> {
 	
 	List<ExceptionEntity> getExceptionByExecutionId(String executionId);
 	
+	List<ExceptionEntity> getAllExceptions();
+	
 	public void deleteExceptionByExecutionId(String executionId);
 	
 	public void deleteExceptionByIds(List<String> list);

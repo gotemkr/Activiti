@@ -25,6 +25,7 @@ public class CommandInvoker extends AbstractCommandInterceptor {
 
   private static final Logger logger = LoggerFactory.getLogger(CommandInvoker.class);
 
+  
   @Override
   @SuppressWarnings("unchecked")
   public <T> T execute(final CommandConfig config, final Command<T> command) {
@@ -54,13 +55,15 @@ public class CommandInvoker extends AbstractCommandInterceptor {
 
   protected void executeOperations(final CommandContext commandContext) {
 	try{
-	while (!commandContext.getAgenda().isEmpty()) {
-		Runnable runnable = commandContext.getAgenda().getNextOperation();
-		executeOperation(runnable);
+		while (!commandContext.getAgenda().isEmpty()) {
+			Runnable runnable = commandContext.getAgenda().getNextOperation();
+			executeOperation(runnable);
+		}
 	}
-	}
-	catch(ActivitiLoggableException e){
-		//Do nothing here
+	catch(RuntimeException e){
+		
+		if(!commandContext.getProcessEngineConfiguration().isProcessResumeEnabled())
+			throw e;
 	}
   }
 

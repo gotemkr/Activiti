@@ -400,6 +400,8 @@ public class ExecutionEntityManagerImpl extends AbstractEntityManager<ExecutionE
       return;
     }
     
+    //
+    
     List<ExecutionEntity> childExecutions = collectChildren(execution.getProcessInstance());
     for (int i=childExecutions.size()-1; i>=0; i--) {
       ExecutionEntity childExecutionEntity = childExecutions.get(i);
@@ -550,6 +552,16 @@ public class ExecutionEntityManagerImpl extends AbstractEntityManager<ExecutionE
     executionEntity.setActive(false);
     
     boolean enableExecutionRelationshipCounts = isExecutionRelatedEntityCountEnabled(executionEntity); 
+    
+    //Delete exceptions related to execution
+    if(!enableExecutionRelationshipCounts || ((CountingExecutionEntity) executionEntity).getExceptionCount()>0){
+    	ExceptionEntityManager exceptionEntityManager = getExceptionEntityManager();
+        ExceptionEntity exception = exceptionEntityManager.findExceptionByProcessInstanceId(executionEntity.getProcessInstanceId());
+        if(exception != null){
+        	exceptionEntityManager.delete(exception);
+        }
+    }
+    
     
     if (executionEntity.getId().equals(executionEntity.getProcessInstanceId())
         && (!enableExecutionRelationshipCounts 

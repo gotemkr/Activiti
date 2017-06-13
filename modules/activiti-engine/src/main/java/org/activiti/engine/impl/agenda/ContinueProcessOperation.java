@@ -73,7 +73,7 @@ public class ContinueProcessOperation extends AbstractOperation {
     	exceptionEnt.setExceptionDetails(e);
     	Context.getProcessEngineConfiguration().getExceptionDataManager().insert(exceptionEnt);
     	
-    	throw new ActivitiLoggableException(e.getMessage(), exceptionEnt, e);
+    	throw e;
     }
   }
 

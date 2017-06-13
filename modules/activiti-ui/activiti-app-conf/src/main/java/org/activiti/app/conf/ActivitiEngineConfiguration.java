@@ -116,6 +116,9 @@ public class ActivitiEngineConfiguration {
             }
     	}
     	
+    	//set resume process enable property
+    	processEngineConfiguration.setProcessResumeEnabled(Boolean.parseBoolean(environment.getProperty("engine.resume.enable")));
+    	
     	// Limit process definition cache
     	processEngineConfiguration.setProcessDefinitionCacheLimit(environment.getProperty("activiti.process-definitions.cache.max", Integer.class, 128));
     	

@@ -191,7 +191,6 @@ public class CallActivityBehavior extends AbstractBpmnActivityBehavior implement
   	}
   	return variablesMap;
   }
-  
 
   // Allow a subclass to override how variables are initialized.
   protected void initializeVariables(ExecutionEntity subProcessInstance, Map<String,Object> variables) {

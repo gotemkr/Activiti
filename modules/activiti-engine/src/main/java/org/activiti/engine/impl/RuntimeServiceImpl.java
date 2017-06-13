@@ -35,9 +35,11 @@ import org.activiti.engine.impl.cmd.DeleteProcessInstanceCmd;
 import org.activiti.engine.impl.cmd.DispatchEventCommand;
 import org.activiti.engine.impl.cmd.ExecuteActivityForAdhocSubProcessCmd;
 import org.activiti.engine.impl.cmd.FindActiveActivityIdsCmd;
+import org.activiti.engine.impl.cmd.GetAllExceptionCmd;
 import org.activiti.engine.impl.cmd.GetDataObjectCmd;
 import org.activiti.engine.impl.cmd.GetDataObjectsCmd;
 import org.activiti.engine.impl.cmd.GetEnabledActivitiesForAdhocSubProcessCmd;
+import org.activiti.engine.impl.cmd.GetExceptionEntityOfProcessInstanceCmd;
 import org.activiti.engine.impl.cmd.GetExecutionVariableCmd;
 import org.activiti.engine.impl.cmd.GetExecutionVariableInstanceCmd;
 import org.activiti.engine.impl.cmd.GetExecutionVariableInstancesCmd;
@@ -59,6 +61,7 @@ import org.activiti.engine.impl.cmd.StartProcessInstanceByMessageCmd;
 import org.activiti.engine.impl.cmd.StartProcessInstanceCmd;
 import org.activiti.engine.impl.cmd.SuspendProcessInstanceCmd;
 import org.activiti.engine.impl.cmd.TriggerCmd;
+import org.activiti.engine.impl.persistence.entity.ExceptionEntity;
 import org.activiti.engine.impl.persistence.entity.VariableInstance;
 import org.activiti.engine.impl.runtime.ProcessInstanceBuilderImpl;
 import org.activiti.engine.runtime.DataObject;
@@ -543,6 +546,16 @@ public class RuntimeServiceImpl extends ServiceImpl implements RuntimeService {
 	@Override
 	public void resumeProcessInstance(String executionId) {
 		commandExecutor.execute(new ResumeProcessExecutionCmd(executionId));
+	}
+
+	@Override
+	public List<ExceptionEntity> getAllExceptionEntities() {
+		return commandExecutor.execute(new GetAllExceptionCmd());
+	}
+
+	@Override
+	public ExceptionEntity getExceptionOfProcessInstance(String processInstanceId) {
+		return commandExecutor.execute(new GetExceptionEntityOfProcessInstanceCmd(processInstanceId));
 	}
   
   

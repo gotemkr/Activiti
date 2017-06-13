@@ -21,6 +21,10 @@
 	
 	
 	<!-- TASK delete -->
+	<delete id="deleteException" parameterType="org.activiti.engine.impl.persistence.entity.ExceptionEntityImpl">
+    	delete from ${prefix}ACT_RU_EXCEPTION where ID_ = #{id}
+  	</delete>
+	
 	<delete id="deleteExceptionByExecutionId" parameterType="string">
     	delete from ${prefix}ACT_RU_EXCEPTION where EXECUTION_ID_ = #{executionId}
   	</delete>
@@ -48,7 +52,7 @@
   	</select>
   	
   	<select id="selectExceptionByProcInstId" parameterType="string" resultMap="exceptionResultMap">
-   		select * from ${prefix}ACT_RU_EXCEPTION where PROC_INST_ID_ = #{procInstId, jdbcType=VARCHAR}
+   		select * from ${prefix}ACT_RU_EXCEPTION where PROC_INST_ID_ = #{parameter, jdbcType=VARCHAR}
   	</select>
 	
   	<select id="selectExceptionByExecutionId" parameterType="string" resultMap="exceptionResultMap">
