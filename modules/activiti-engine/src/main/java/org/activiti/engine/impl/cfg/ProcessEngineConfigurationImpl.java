@@ -658,8 +658,6 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
   protected Set<Class<?>> activiti5CustomMybatisMappers;
   protected Set<String> activiti5CustomMybatisXMLMappers;
 
-
-
   // buildProcessEngine
   // ///////////////////////////////////////////////////////
 

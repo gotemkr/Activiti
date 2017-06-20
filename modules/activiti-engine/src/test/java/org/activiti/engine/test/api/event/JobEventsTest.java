@@ -350,7 +350,7 @@ public class JobEventsTest extends PluggableActivitiTestCase {
     
     try {
       managementService.executeJob(executableJob.getId());
-      //fail("Expected exception");
+      fail("Expected exception");
     } catch (Exception e) {
       // exception expected
     }

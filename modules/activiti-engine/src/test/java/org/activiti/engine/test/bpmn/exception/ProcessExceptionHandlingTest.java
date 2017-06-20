@@ -1,3 +1,15 @@
+/* Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.activiti.engine.test.bpmn.exception;
 
 import java.util.List;
@@ -14,20 +26,16 @@ public class ProcessExceptionHandlingTest extends PluggableActivitiTestCase {
 	static int denominator;
 	static int result;
 	
-	public static class Delegate1 implements JavaDelegate {
-	
+	public static class Delegate1 implements JavaDelegate {	
 		public void execute(DelegateExecution execution) {
 			result = 10/denominator;
-		}
-	
+		}	
 	}
 	
 	public static class Delegate2 implements JavaDelegate {
-		
 		public void execute(DelegateExecution execution) {
 			denominator = 20;
 		}
-	
 	}
 	
 	@Override
@@ -42,7 +50,6 @@ public class ProcessExceptionHandlingTest extends PluggableActivitiTestCase {
 
 	@Deployment
 	public void testExceptionLogging(){
-		
 		denominator = 0;
 		ProcessInstance pi = runtimeService.startProcessInstanceByKey("process");
 		ExceptionEntity exceptionEntity = runtimeService.getExceptionOfProcessInstance(pi.getId());
@@ -52,7 +59,6 @@ public class ProcessExceptionHandlingTest extends PluggableActivitiTestCase {
 		for (org.activiti.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
 		      repositoryService.deleteDeployment(deployment.getId(), true);
 		}
-		 
 	}
 	
 	/**
@@ -106,60 +112,49 @@ public class ProcessExceptionHandlingTest extends PluggableActivitiTestCase {
 	/**
 	 * list exceptions 
 	 */
-	
 	@Deployment (resources = "org/activiti/engine/test/bpmn/exception/ProcessExceptionHandlingTest.testExceptionLogging.bpmn20.xml")
 	public void testListException(){
-		
 		denominator = 0;
 		ProcessInstance pi = runtimeService.startProcessInstanceByKey("process");
 		String procInstId = pi.getId();
-		
-		List<ExceptionEntity> exceptions = runtimeService.getAllExceptionEntities();
-		
+
+		List<ExceptionEntity> exceptions = runtimeService.getAllExceptionEntities();		
 		assertNotNull(exceptions);
 		assertEquals(exceptions.size(), 1);
 		
 		ExceptionEntity exceptionEntity = exceptions.get(0);
-		
 		assertEquals(procInstId, exceptionEntity.getProcInstId());
 		
 		denominator = 10;
 		runtimeService.resumeProcessInstance(exceptionEntity.getExecutionId());
 		exceptions = runtimeService.getAllExceptionEntities();
-		
 		assertEquals(exceptions.size(), 0);
 		
 		for (org.activiti.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
 		      repositoryService.deleteDeployment(deployment.getId(), true);
 		}
-		
 	}
 	
 	/**
-	 * get esception by process instance id
+	 * get exception by process instance id
 	 */
 	@Deployment (resources = "org/activiti/engine/test/bpmn/exception/ProcessExceptionHandlingTest.testExceptionLogging.bpmn20.xml")
 	public void testGetException(){
-		
 		denominator = 0;
 		ProcessInstance pi = runtimeService.startProcessInstanceByKey("process");
 		String procInstId = pi.getId();
 		
 		ExceptionEntity exception = runtimeService.getExceptionOfProcessInstance(procInstId);
-		
 		assertNotNull(exception);
 		assertEquals(procInstId, exception.getProcInstId());
 		
 		denominator = 10;
 		runtimeService.resumeProcessInstance(exception.getExecutionId());
 		exception = runtimeService.getExceptionOfProcessInstance(procInstId);
-		
 		assertNull(exception);
 		
 		for (org.activiti.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
 		      repositoryService.deleteDeployment(deployment.getId(), true);
-		}
-		
+		}		
 	}
-
 }

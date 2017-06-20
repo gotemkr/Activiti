@@ -46,5 +46,4 @@ public interface CountingExecutionEntity {
   
   void setExceptionCount(int exceptionCount);
   int getExceptionCount();
-  
 }

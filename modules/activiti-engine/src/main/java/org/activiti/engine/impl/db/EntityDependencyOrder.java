@@ -161,7 +161,6 @@ public class EntityDependencyOrder {
 		 */
 		DELETE_ORDER.add(TaskEntityImpl.class);
 		
-		
 		/*
 		 * FK to ExecutionEntityImpl
 		 */
@@ -176,9 +175,7 @@ public class EntityDependencyOrder {
 		 * FK to ProcessDefinition
 		 */
 		DELETE_ORDER.add(ExecutionEntityImpl.class);
-		
-		
-		
+				
 		/*
 		 * FK from Task
 		 * FK from IdentityLink
