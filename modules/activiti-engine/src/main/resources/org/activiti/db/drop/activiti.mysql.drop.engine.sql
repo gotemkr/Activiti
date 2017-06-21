@@ -19,6 +19,12 @@ alter table ACT_RU_EXECUTION
     
 alter table ACT_RU_EXECUTION 
     drop FOREIGN KEY ACT_FK_EXE_PROCDEF;
+    
+alter table ACT_RU_EXCEPTION 
+    drop CONSTRAINT ACT_FK_EXCEPTION_EXEC;
+	
+alter table ACT_RU_EXCEPTION 
+    drop CONSTRAINT ACT_FK_EXCEPTION_PROCINST;
 
 alter table ACT_RU_IDENTITYLINK
     drop FOREIGN KEY ACT_FK_TSKASS_TASK;
@@ -121,6 +127,7 @@ drop table if exists ACT_RE_MODEL;
 drop table if exists ACT_RU_IDENTITYLINK;
 drop table if exists ACT_RU_TASK;
 drop table if exists ACT_RE_PROCDEF;
+drop table if exists ACT_RU_EXCEPTION;
 drop table if exists ACT_RU_EXECUTION;
 drop table if exists ACT_RU_JOB;
 drop table if exists ACT_RU_TIMER_JOB;

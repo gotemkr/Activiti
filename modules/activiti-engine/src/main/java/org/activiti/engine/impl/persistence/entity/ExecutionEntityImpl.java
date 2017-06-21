@@ -117,7 +117,8 @@ public class ExecutionEntityImpl extends VariableScopeImpl implements ExecutionE
   protected int deadLetterJobCount;
   protected int variableCount;
   protected int identityLinkCount;
-
+  protected int exceptionCount;
+  
   /**
    * persisted reference to the processDefinition.
    * 
@@ -951,4 +952,13 @@ public class ExecutionEntityImpl extends VariableScopeImpl implements ExecutionE
     }
   }
 
+  @Override
+  public void setExceptionCount(int exceptionCount) {
+    this.exceptionCount = exceptionCount;	
+  }
+
+  @Override
+  public int getExceptionCount() {
+    return exceptionCount;
+  }
 }

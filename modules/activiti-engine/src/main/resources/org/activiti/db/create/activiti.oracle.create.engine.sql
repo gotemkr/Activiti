@@ -86,6 +86,16 @@ create table ACT_RU_EXECUTION (
     primary key (ID_)
 );
 
+create table ACT_RU_EXCEPTION (
+    ID_ NVARCHAR2(64),
+    PROC_INST_ID_ NVARCHAR2(64),
+    EXCEPTION_ACT_ID_ NVARCHAR2(64),
+    EXECUTION_ID_ NVARCHAR2(64),
+    EXCEPTION_MESSAGE_ NVARCHAR2(255),
+    EXCEPTION_DETAILS_ NVARCHAR2(20000),
+    primary key (ID_)
+);
+
 create table ACT_RU_JOB (
     ID_ NVARCHAR2(64) NOT NULL,
     REV_ INTEGER,
@@ -318,6 +328,19 @@ alter table ACT_RU_EXECUTION
     add constraint ACT_FK_EXE_PROCDEF 
     foreign key (PROC_DEF_ID_) 
     references ACT_RE_PROCDEF (ID_);    
+    
+    
+create index ACT_IDX_EXCEPTION_EXEC on ACT_RU_EXCEPTION (EXECUTION_ID_ );
+alter table ACT_RU_EXCEPTION
+    add constraint ACT_FK_EXCEPTION_EXEC
+    foreign key (EXECUTION_ID_)
+    references ACT_RU_EXECUTION(ID_);
+
+create index ACT_IDX_EXCEPTION_PROCINST on ACT_RU_EXCEPTION (PROC_INST_ID_);
+alter table ACT_RU_EXCEPTION
+    add constraint ACT_FK_EXCEPTION_PROCINST
+    foreign key (EXECUTION_ID_)
+    references ACT_RU_EXECUTION(ID_);
 
 create index ACT_IDX_TSKASS_TASK on ACT_RU_IDENTITYLINK(TASK_ID_);
 alter table ACT_RU_IDENTITYLINK

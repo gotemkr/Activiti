@@ -27,6 +27,7 @@ import org.activiti.engine.impl.persistence.entity.CommentEntityManager;
 import org.activiti.engine.impl.persistence.entity.DeadLetterJobEntityManager;
 import org.activiti.engine.impl.persistence.entity.DeploymentEntityManager;
 import org.activiti.engine.impl.persistence.entity.EventSubscriptionEntityManager;
+import org.activiti.engine.impl.persistence.entity.ExceptionEntityManager;
 import org.activiti.engine.impl.persistence.entity.ExecutionEntityManager;
 import org.activiti.engine.impl.persistence.entity.GroupEntityManager;
 import org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntityManager;
@@ -208,5 +209,9 @@ public abstract class AbstractManager {
   
   protected CommentEntityManager getCommentEntityManager() {
     return getProcessEngineConfiguration().getCommentEntityManager();
+  }
+
+  protected ExceptionEntityManager getExceptionEntityManager(){
+    return getProcessEngineConfiguration().getExceptionEntityManager();
   }
 }

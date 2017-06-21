@@ -44,4 +44,6 @@ public interface CountingExecutionEntity {
   void setIdentityLinkCount(int identityLinkCount);
   int getIdentityLinkCount();
   
+  void setExceptionCount(int exceptionCount);
+  int getExceptionCount();
 }

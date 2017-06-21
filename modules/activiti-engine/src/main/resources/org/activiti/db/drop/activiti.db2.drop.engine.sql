@@ -18,6 +18,12 @@ alter table ACT_RU_EXECUTION
     
 alter table ACT_RU_EXECUTION 
     drop foreign key ACT_FK_EXE_PROCDEF;
+    
+alter table ACT_RU_EXCEPTION 
+    drop foreign key ACT_FK_EXCEPTION_EXEC;
+	
+alter table ACT_RU_EXCEPTION 
+    drop foreign key ACT_FK_EXCEPTION_PROCINST;
 
 alter table ACT_RU_IDENTITYLINK
     drop foreign key ACT_FK_TSKASS_TASK;
@@ -120,6 +126,7 @@ drop table ACT_RE_PROCDEF;
 drop table ACT_RU_VARIABLE;
 drop table ACT_RU_IDENTITYLINK;
 drop table ACT_RU_TASK;
+drop table ACT_RU_EXCEPTION;
 drop table ACT_RU_EXECUTION;
 drop table ACT_RU_JOB;
 drop table ACT_RU_TIMER_JOB;

@@ -551,6 +551,15 @@ public class ExecutionEntityManagerImpl extends AbstractEntityManager<ExecutionE
     
     boolean enableExecutionRelationshipCounts = isExecutionRelatedEntityCountEnabled(executionEntity); 
     
+    //Delete exceptions related to execution
+    if(!enableExecutionRelationshipCounts || ((CountingExecutionEntity) executionEntity).getExceptionCount()>0){
+      ExceptionEntityManager exceptionEntityManager = getExceptionEntityManager();
+      ExceptionEntity exception = exceptionEntityManager.findExceptionByProcessInstanceId(executionEntity.getProcessInstanceId());
+      if(exception != null){
+        exceptionEntityManager.delete(exception);
+      }
+    }
+    
     if (executionEntity.getId().equals(executionEntity.getProcessInstanceId())
         && (!enableExecutionRelationshipCounts 
             || (enableExecutionRelationshipCounts && ((CountingExecutionEntity) executionEntity).getIdentityLinkCount() > 0))) {

@@ -139,6 +139,11 @@ public abstract class AbstractProcessInstancesResource {
 
   }
 
+  public ProcessInstanceRepresentation resumeProcessInstance(String executionId) {
+    activitiService.resumeProcessInstance(executionId);
+    return null;
+  }
+
   protected Map<String, List<RelatedContent>> groupContentByField(Page<RelatedContent> allContent) {
     HashMap<String, List<RelatedContent>> result = new HashMap<String, List<RelatedContent>>();
     List<RelatedContent> list;

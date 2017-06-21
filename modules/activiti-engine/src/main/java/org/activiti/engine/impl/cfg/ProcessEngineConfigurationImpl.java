@@ -172,6 +172,7 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
   protected EventLogEntryDataManager eventLogEntryDataManager;
   protected EventSubscriptionDataManager eventSubscriptionDataManager;
   protected ExecutionDataManager executionDataManager;
+  protected ExceptionDataManager exceptionDataManager;
   protected GroupDataManager groupDataManager;
   protected HistoricActivityInstanceDataManager historicActivityInstanceDataManager;
   protected HistoricDetailDataManager historicDetailDataManager;
@@ -205,6 +206,7 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
   protected EventLogEntryEntityManager eventLogEntryEntityManager;
   protected EventSubscriptionEntityManager eventSubscriptionEntityManager;
   protected ExecutionEntityManager executionEntityManager;
+  protected ExceptionEntityManager exceptionEntityManager;
   protected GroupEntityManager groupEntityManager;
   protected HistoricActivityInstanceEntityManager historicActivityInstanceEntityManager;
   protected HistoricDetailEntityManager historicDetailEntityManager;
@@ -1124,6 +1126,9 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
     if (eventSubscriptionDataManager == null) {
       eventSubscriptionDataManager = new MybatisEventSubscriptionDataManager(this);
     }
+    if(exceptionDataManager == null) {
+    	exceptionDataManager = new MybatisExceptionDataManager(this);
+    }
     if (executionDataManager == null) {
       executionDataManager = new MybatisExecutionDataManager(this);
     }
@@ -1218,6 +1223,9 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
     }
     if (executionEntityManager == null) {
       executionEntityManager = new ExecutionEntityManagerImpl(this, executionDataManager);
+    }
+    if (exceptionEntityManager == null) {
+    	exceptionEntityManager = new ExceptionEntityManagerImpl(this, exceptionDataManager);
     }
     if (groupEntityManager == null) {
       groupEntityManager = new GroupEntityManagerImpl(this, groupDataManager);
@@ -3043,6 +3051,15 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
     this.executionDataManager = executionDataManager;
     return this;
   }
+  
+  public ExceptionDataManager getExceptionDataManager() {
+    return exceptionDataManager;
+  }
+
+  public ProcessEngineConfigurationImpl setExceptionDataManager(ExceptionDataManager exceptionDataManager) {
+    this.exceptionDataManager = exceptionDataManager;
+    return this;
+  }
 
   public GroupDataManager getGroupDataManager() {
     return groupDataManager;
@@ -3306,6 +3323,15 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
 
   public ProcessEngineConfigurationImpl setExecutionEntityManager(ExecutionEntityManager executionEntityManager) {
     this.executionEntityManager = executionEntityManager;
+    return this;
+  }
+  
+  public ExceptionEntityManager getExceptionEntityManager() {
+    return exceptionEntityManager;
+  }
+
+  public ProcessEngineConfigurationImpl setExceptionEntityManager(ExceptionEntityManager exceptionEntityManager) {
+    this.exceptionEntityManager = exceptionEntityManager;
     return this;
   }
 

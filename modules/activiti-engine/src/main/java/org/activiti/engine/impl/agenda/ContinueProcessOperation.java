@@ -8,6 +8,7 @@ import org.activiti.engine.delegate.event.impl.ActivitiEventBuilder;
 import org.activiti.engine.impl.context.Context;
 import org.activiti.engine.impl.delegate.ActivityBehavior;
 import org.activiti.engine.impl.interceptor.CommandContext;
+import org.activiti.engine.impl.persistence.entity.ExceptionEntity;
 import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
 import org.activiti.engine.impl.persistence.entity.JobEntity;
 import org.activiti.engine.impl.util.CollectionUtil;
@@ -16,7 +17,6 @@ import org.activiti.engine.logging.LogMDC;
 import org.activiti.engine.runtime.Job;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -51,12 +51,25 @@ public class ContinueProcessOperation extends AbstractOperation {
   @Override
   public void run() {
     FlowElement currentFlowElement = getCurrentFlowElement(execution);
-    if (currentFlowElement instanceof FlowNode) {
-      continueThroughFlowNode((FlowNode) currentFlowElement);
-    } else if (currentFlowElement instanceof SequenceFlow) {
-      continueThroughSequenceFlow((SequenceFlow) currentFlowElement);
-    } else {
-      throw new ActivitiException("Programmatic error: no current flow element found or invalid type: " + currentFlowElement + ". Halting.");
+    try{
+      if (currentFlowElement instanceof FlowNode) {
+        continueThroughFlowNode((FlowNode) currentFlowElement);
+      } else if (currentFlowElement instanceof SequenceFlow) {
+        continueThroughSequenceFlow((SequenceFlow) currentFlowElement);
+      } else {
+        throw new ActivitiException("Programmatic error: no current flow element found or invalid type: " + currentFlowElement + ". Halting.");
+      }
+    }
+    catch(Exception e){
+      ExceptionEntity exceptionEnt = Context.getProcessEngineConfiguration().getExceptionEntityManager().create();
+      exceptionEnt.setExceptionActId(currentFlowElement.getId());
+      exceptionEnt.setExceptionMessage(e.getMessage());
+      exceptionEnt.setProcInstId(execution.getProcessInstanceId());
+      exceptionEnt.setExecutionId(execution.getId());
+      exceptionEnt.setExceptionDetails(e);
+      Context.getProcessEngineConfiguration().getExceptionDataManager().insert(exceptionEnt);
+
+      throw e;
     }
   }
 
