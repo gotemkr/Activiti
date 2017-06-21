@@ -395,7 +395,7 @@ alter table ACT_RU_VARIABLE
     
 create index ACT_IDX_JOB_EXECUTION_ID on ACT_RU_JOB(EXECUTION_ID_);
 alter table ACT_RU_JOB 
-    add constraint ACT_FK_JOB_EXECUTIN 
+    add constraint ACT_FK_JOB_EXECUTION 
     foreign key (EXECUTION_ID_) 
     references ACT_RU_EXECUTION (ID_);
 
