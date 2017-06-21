@@ -357,12 +357,12 @@ alter table ACT_RU_EXECUTION
     references ACT_RE_PROCDEF (ID_);    
     
 alter table ACT_RU_EXCEPTION
-	add constraint ACT_FK_EXCEPTION_EXEC
+    add constraint ACT_FK_EXCEPTION_EXEC
     foreign key (EXECUTION_ID_)
     references ACT_RU_EXECUTION(ID_);
 
 alter table ACT_RU_EXCEPTION
-	add constraint ACT_FK_EXCEPTION_PROCINST
+    add constraint ACT_FK_EXCEPTION_PROCINST
     foreign key (EXECUTION_ID_)
     references ACT_RU_EXECUTION(ID_);
     

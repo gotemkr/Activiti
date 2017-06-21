@@ -23,17 +23,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ProcessExceptionResource {
-	
-	@Inject
-	protected RuntimeService runtimeService;
-	
-	@RequestMapping(value = "/rest/process-instances/list/exceptions", method = RequestMethod.GET, produces = "application/json")
-	public List<ExceptionEntity> listExceptions() {		
-		return runtimeService.getAllExceptionEntities();
-	}
-	
-	@RequestMapping(value = "/rest/process-instances/{processInstanceId}/exception", method = RequestMethod.GET)
-    public ExceptionEntity getProcessDefinitions(@PathVariable String processInstanceId) {
-	    return runtimeService.getExceptionOfProcessInstance(processInstanceId);
-    }
+
+  @Inject
+  protected RuntimeService runtimeService;
+
+  @RequestMapping(value = "/rest/process-instances/list/exceptions", method = RequestMethod.GET, produces = "application/json")
+  public List<ExceptionEntity> listExceptions() {		
+    return runtimeService.getAllExceptionEntities();
+  }
+
+  @RequestMapping(value = "/rest/process-instances/{processInstanceId}/exception", method = RequestMethod.GET)
+  public ExceptionEntity getProcessDefinitions(@PathVariable String processInstanceId) {
+    return runtimeService.getExceptionOfProcessInstance(processInstanceId);
+  }
 }

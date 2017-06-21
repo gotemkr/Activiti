@@ -16,7 +16,7 @@ package org.activiti.engine.impl.persistence.entity;
  * @author Anoop Verma
  */
 public interface ExceptionEntityManager  extends EntityManager<ExceptionEntity> {
-	
-	ExceptionEntity findExceptionByProcessInstanceId(String procInstId);
-	
+
+  ExceptionEntity findExceptionByProcessInstanceId(String procInstId);
+
 }

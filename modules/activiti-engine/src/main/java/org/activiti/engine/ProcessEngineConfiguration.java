@@ -128,8 +128,7 @@ public abstract class ProcessEngineConfiguration {
   protected int jdbcPingConnectionNotUsedFor;
   protected int jdbcDefaultTransactionIsolationLevel;
   protected DataSource dataSource;
-  protected boolean transactionsExternallyManaged;
-  
+  protected boolean transactionsExternallyManaged;  
   private boolean processResumeEnabled = false;
 
   protected String jpaPersistenceUnitName;
@@ -819,12 +818,12 @@ public abstract class ProcessEngineConfiguration {
     return engineAgendaFactory;
   }
 
-public boolean isProcessResumeEnabled() {
-	return processResumeEnabled;
-}
+  public boolean isProcessResumeEnabled() {
+    return processResumeEnabled;
+  }
 
-public void setProcessResumeEnabled(boolean processResumeEnabled) {
-	this.processResumeEnabled = processResumeEnabled;
-}
+  public void setProcessResumeEnabled(boolean processResumeEnabled) {
+    this.processResumeEnabled = processResumeEnabled;
+  }
 
 }

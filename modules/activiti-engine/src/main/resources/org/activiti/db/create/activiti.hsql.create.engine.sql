@@ -321,7 +321,7 @@ alter table ACT_RU_EXECUTION
 alter table ACT_RU_EXECUTION
     add constraint ACT_FK_EXE_PROCDEF 
     foreign key (PROC_DEF_ID_) 
-    references ACT_RE_PROCDEF (ID_);  
+    references ACT_RE_PROCDEF (ID_);    
     
 alter table ACT_RU_EXCEPTION
 	add constraint ACT_FK_EXCEPTION_EXEC

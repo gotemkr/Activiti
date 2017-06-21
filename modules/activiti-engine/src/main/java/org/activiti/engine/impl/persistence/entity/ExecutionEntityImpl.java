@@ -954,11 +954,11 @@ public class ExecutionEntityImpl extends VariableScopeImpl implements ExecutionE
 
   @Override
   public void setExceptionCount(int exceptionCount) {
-	  this.exceptionCount = exceptionCount;	
+    this.exceptionCount = exceptionCount;	
   }
 
   @Override
   public int getExceptionCount() {
-	  return exceptionCount;
+    return exceptionCount;
   }
 }

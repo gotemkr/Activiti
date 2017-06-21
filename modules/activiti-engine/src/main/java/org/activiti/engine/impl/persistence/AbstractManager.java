@@ -210,8 +210,8 @@ public abstract class AbstractManager {
   protected CommentEntityManager getCommentEntityManager() {
     return getProcessEngineConfiguration().getCommentEntityManager();
   }
-  
+
   protected ExceptionEntityManager getExceptionEntityManager(){
-	  return getProcessEngineConfiguration().getExceptionEntityManager();
+    return getProcessEngineConfiguration().getExceptionEntityManager();
   }
 }

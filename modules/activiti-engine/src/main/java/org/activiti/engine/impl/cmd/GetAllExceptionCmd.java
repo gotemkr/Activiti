@@ -22,8 +22,8 @@ import org.activiti.engine.impl.persistence.entity.ExceptionEntity;
  */
 public class GetAllExceptionCmd implements Command<List<ExceptionEntity>> {
 
-	@Override
-	public List<ExceptionEntity> execute(CommandContext commandContext) {
-		return commandContext.getProcessEngineConfiguration().getExceptionDataManager().getAllExceptions();
-	}
+  @Override
+  public List<ExceptionEntity> execute(CommandContext commandContext) {
+    return commandContext.getProcessEngineConfiguration().getExceptionDataManager().getAllExceptions();
+  }
 }

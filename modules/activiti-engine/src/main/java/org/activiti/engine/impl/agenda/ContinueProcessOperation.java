@@ -87,9 +87,9 @@ public class ContinueProcessOperation extends AbstractOperation {
       executeProcessStartExecutionListeners();
     }
 
-    // For a subprocess, a new child execution is created that will visit the steps of the subprocess
-    // The original execution that arrived here will wait until the subprocess is finished
-    // and will then be used to continue the process instance.
+     // For a subprocess, a new child execution is created that will visit the steps of the subprocess
+     // The original execution that arrived here will wait until the subprocess is finished
+     // and will then be used to continue the process instance.
     if (flowNode instanceof SubProcess) {
       createChildExecutionForSubProcess((SubProcess) flowNode);
     }
@@ -213,18 +213,18 @@ public class ContinueProcessOperation extends AbstractOperation {
       FlowElement sourceFlowElement = sequenceFlow.getSourceFlowElement();
       FlowElement targetFlowElement = sequenceFlow.getTargetFlowElement();
       Context.getProcessEngineConfiguration().getEventDispatcher().dispatchEvent(
-          ActivitiEventBuilder.createSequenceFlowTakenEvent(
-              (ExecutionEntity) execution,
-              ActivitiEventType.SEQUENCEFLOW_TAKEN,
-              sequenceFlow.getId(),
-              sourceFlowElement != null ? sourceFlowElement.getId() : null,
-                  sourceFlowElement != null ? (String) sourceFlowElement.getName() : null,
-                      sourceFlowElement != null ? sourceFlowElement.getClass().getName() : null,
-                          sourceFlowElement != null ? ((FlowNode) sourceFlowElement).getBehavior(): null,
-                              targetFlowElement != null ? targetFlowElement.getId() : null,
-                                  targetFlowElement != null ? targetFlowElement.getName() : null,
-                                      targetFlowElement != null ? targetFlowElement.getClass().getName() : null,
-                                          targetFlowElement != null ? ((FlowNode) targetFlowElement).getBehavior(): null));
+        ActivitiEventBuilder.createSequenceFlowTakenEvent(
+            (ExecutionEntity) execution,
+            ActivitiEventType.SEQUENCEFLOW_TAKEN,
+            sequenceFlow.getId(),
+            sourceFlowElement != null ? sourceFlowElement.getId() : null,
+            sourceFlowElement != null ? (String) sourceFlowElement.getName() : null,
+            sourceFlowElement != null ? sourceFlowElement.getClass().getName() : null,
+            sourceFlowElement != null ? ((FlowNode) sourceFlowElement).getBehavior(): null,
+            targetFlowElement != null ? targetFlowElement.getId() : null,
+            targetFlowElement != null ? targetFlowElement.getName() : null,
+            targetFlowElement != null ? targetFlowElement.getClass().getName() : null,
+            targetFlowElement != null ? ((FlowNode) targetFlowElement).getBehavior(): null));
     }
 
     FlowElement targetFlowElement = sequenceFlow.getTargetFlowElement();

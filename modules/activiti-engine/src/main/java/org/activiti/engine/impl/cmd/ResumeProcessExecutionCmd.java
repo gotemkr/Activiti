@@ -30,32 +30,32 @@ import org.activiti.engine.runtime.Execution;
  */
 public class ResumeProcessExecutionCmd implements Command<Void>{
 
-	protected final String executionId;
+  protected final String executionId;
 
-	public ResumeProcessExecutionCmd(String executionId) {
-		this.executionId = executionId;
-	}
+  public ResumeProcessExecutionCmd(String executionId) {
+    this.executionId = executionId;
+  }
 
-	@Override
-	public Void execute(CommandContext commandContext) {
-		if(this.executionId == null){
-			throw new ActivitiIllegalArgumentException("ExecutionId cannot be null.");
-		}
+  @Override
+  public Void execute(CommandContext commandContext) {
+    if(this.executionId == null){
+      throw new ActivitiIllegalArgumentException("ExecutionId cannot be null.");
+    }
 
-		ExecutionEntity executionEntity = commandContext.getExecutionEntityManager().findById(executionId);
-		if (executionEntity == null) {
-			throw new ActivitiObjectNotFoundException("Cannot find execution entity for execution id '" + executionId + "'.", Execution.class);
-		}
+    ExecutionEntity executionEntity = commandContext.getExecutionEntityManager().findById(executionId);
+    if (executionEntity == null) {
+      throw new ActivitiObjectNotFoundException("Cannot find execution entity for execution id '" + executionId + "'.", Execution.class);
+    }
 
-		ExceptionDataManager dataManager = commandContext.getProcessEngineConfiguration().getExceptionDataManager();
-		List<ExceptionEntity> exceptions = dataManager.getExceptionByExecutionId(executionId);
+    ExceptionDataManager dataManager = commandContext.getProcessEngineConfiguration().getExceptionDataManager();
+    List<ExceptionEntity> exceptions = dataManager.getExceptionByExecutionId(executionId);
 
-		if(exceptions == null || exceptions.isEmpty()){
-			throw new ActivitiException("No exception is logged with execution id: "+executionId);
-		}
+    if(exceptions == null || exceptions.isEmpty()){
+      throw new ActivitiException("No exception is logged with execution id: "+executionId);
+    }
 
-		dataManager.deleteExceptions(exceptions);
-		Context.getAgenda().planContinueProcessOperation(executionEntity);
-		return null;
-	}
+    dataManager.deleteExceptions(exceptions);
+    Context.getAgenda().planContinueProcessOperation(executionEntity);
+    return null;
+  }
 }

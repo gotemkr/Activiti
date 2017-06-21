@@ -21,16 +21,16 @@ import org.activiti.engine.impl.persistence.entity.ExceptionEntity;
  */
 public class GetExceptionEntityOfProcessInstanceCmd implements Command<ExceptionEntity> {
 
-	private String processInstanceId;
+  private String processInstanceId;
 
-	public GetExceptionEntityOfProcessInstanceCmd(String processInstanceId) {
-		super();
-		this.processInstanceId = processInstanceId;
-	}
+  public GetExceptionEntityOfProcessInstanceCmd(String processInstanceId) {
+    super();
+    this.processInstanceId = processInstanceId;
+  }
 
-	@Override
-	public ExceptionEntity execute(CommandContext commandContext) {
-		return commandContext.getProcessEngineConfiguration().getExceptionEntityManager().findExceptionByProcessInstanceId(processInstanceId);
-	}
+  @Override
+  public ExceptionEntity execute(CommandContext commandContext) {
+    return commandContext.getProcessEngineConfiguration().getExceptionEntityManager().findExceptionByProcessInstanceId(processInstanceId);
+  }
 
 }

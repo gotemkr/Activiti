@@ -30,6 +30,6 @@ public class ProcessInstancesResource extends AbstractProcessInstancesResource {
 	
 	@RequestMapping(value = "/rest/process-instance/{executionId}/resume", method = RequestMethod.POST)
 	public ProcessInstanceRepresentation resumeProcessInstance(@PathVariable("executionId") String executionId) {
-		return super.resumeProcessInstance(executionId);
+	  return super.resumeProcessInstance(executionId);
 	}
 }

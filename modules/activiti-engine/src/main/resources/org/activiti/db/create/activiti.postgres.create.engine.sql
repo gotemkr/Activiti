@@ -329,13 +329,13 @@ alter table ACT_RU_EXECUTION
     
 create index ACT_IDX_EXCEPTION_EXEC on ACT_RU_EXCEPTION (EXECUTION_ID_ );
 alter table ACT_RU_EXCEPTION
-	add constraint ACT_FK_EXCEPTION_EXEC
+    add constraint ACT_FK_EXCEPTION_EXEC
     foreign key (EXECUTION_ID_)
     references ACT_RU_EXECUTION(ID_);
 
 create index ACT_IDX_EXCEPTION_PROCINST on ACT_RU_EXCEPTION (PROC_INST_ID_);
 alter table ACT_RU_EXCEPTION
-	add constraint ACT_FK_EXCEPTION_PROCINST
+    add constraint ACT_FK_EXCEPTION_PROCINST
     foreign key (EXECUTION_ID_)
     references ACT_RU_EXECUTION(ID_);
 

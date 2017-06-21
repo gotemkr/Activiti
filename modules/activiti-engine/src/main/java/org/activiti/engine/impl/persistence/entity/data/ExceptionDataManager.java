@@ -19,16 +19,16 @@ import org.activiti.engine.impl.persistence.entity.ExceptionEntity;
  * @author Anoop Verma
  */
 public interface ExceptionDataManager extends DataManager<ExceptionEntity> {
-	
-	List<ExceptionEntity> getExceptionByProcessInstId(String processInstId);
-	
-	List<ExceptionEntity> getExceptionByExecutionId(String executionId);
-	
-	List<ExceptionEntity> getAllExceptions();
-	
-	public void deleteExceptionByExecutionId(String executionId);
-	
-	public void deleteExceptionByIds(List<String> list);
-	
-	public void deleteExceptions(List<ExceptionEntity> list);
+
+  List<ExceptionEntity> getExceptionByProcessInstId(String processInstId);
+
+  List<ExceptionEntity> getExceptionByExecutionId(String executionId);
+
+  List<ExceptionEntity> getAllExceptions();
+
+  public void deleteExceptionByExecutionId(String executionId);
+
+  public void deleteExceptionByIds(List<String> list);
+
+  public void deleteExceptions(List<ExceptionEntity> list);
 }
